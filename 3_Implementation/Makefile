@@ -95,32 +95,30 @@ flappy: src/main.c src/test.c src/config.h libflappy.a $(resource_headers)
 
 # Create the virtualenv for pre/post build scripts
 venv:
-	@echo "VENV    venv/"
-	@python3 -m venv venv/
-	@./venv/bin/pip install wheel
+	@pip3 install wheel
 	@echo "DEPS    scripts/requirements.txt"
-	@./venv/bin/pip install -r scripts/requirements.txt
+	@pip3 install -r scripts/requirements.txt
 
 # Double suffix rules for convertion resource files to header files
 .SUFFIXES: .obj .h
 .obj.h:
 	@echo "MODEL   $@"
-	@./venv/bin/python3 scripts/res2header.py $< $@
+	@python3 scripts/res2header.py $< $@
 
 .SUFFIXES: .glsl .h
 .glsl.h:
 	@echo "SHADER  $@"
-	@./venv/bin/python3 scripts/res2header.py $< $@
+	@python3 scripts/res2header.py $< $@
 
 .SUFFIXES: .jpg .h
 .jpg.h:
 	@echo "TEXTURE $@"
-	@./venv/bin/python3 scripts/res2header.py $< $@
+	@python3 scripts/res2header.py $< $@
 
 .SUFFIXES: .png .h
 .png.h:
 	@echo "TEXTURE $@"
-	@./venv/bin/python3 scripts/res2header.py $< $@
+	@python3 scripts/res2header.py $< $@
 
 # Helper target that cleans up build artifacts
 .PHONY: clean

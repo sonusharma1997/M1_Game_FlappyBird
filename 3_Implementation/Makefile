@@ -93,17 +93,16 @@ flappy: src/main.c src/test.c src/config.h libflappy.a $(resource_headers)
 	@$(CC) $(CFLAGS) $(LDFLAGS) -o $@ src/main.c libflappy.a $(LDLIBS)
 	@$(CC) $(CFLAGS) $(LDFLAGS) -o test src/test.c libflappy.a $(LDLIBS)
 
-# Create the virtualenv for pre/post build scripts
-venv:
-	@pip3 install wheel
-	@echo "DEPS    scripts/requirements.txt"
-	@pip3 install -r scripts/requirements.txt
+
 
 # Double suffix rules for convertion resource files to header files
 .SUFFIXES: .obj .h
 .obj.h:
 	@echo "MODEL   $@"
 	@python3 scripts/res2header.py $< $@
+	@pip3 install wheel
+	@echo "DEPS    scripts/requirements.txt"
+	@pip3 install -r scripts/requirements.txt
 
 .SUFFIXES: .glsl .h
 .glsl.h:

@@ -8,7 +8,7 @@
 # CFLAGS breakout by category
 CFLAGS_VERSION = -std=c99
 CFLAGS_OPTIMIZATIONS = -g -Og
-CFLAGS_WARNINGS = -Wall -Wextra -Wpedantic
+CFLAGS_WARNINGS = -w
 CFLAGS_DEFINITIONS = -DGLFW_INCLUDE_NONE
 CFLAGS_INCLUDE_DIRS = -Ires/ -Isrc/ -Ivendor/include/
 CFLAGS_EXTRAS =
@@ -84,8 +84,6 @@ res/textures/bird.h: res/textures/bird.png
 res/textures/pipe_bot.h: res/textures/pipe_bot.png
 res/textures/pipe_top.h: res/textures/pipe_top.png
 
-# Resource conversion requires some Python packages
-$(resource_headers): venv
 
 # Compile and link the main executable
 flappy: src/main.c src/test.c src/config.h libflappy.a $(resource_headers)

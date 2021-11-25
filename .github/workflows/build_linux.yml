@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Install glfw
-      run: sudo apt-get install libglfw3-dev
+    - name: Install
+      run: sudo apt-get install libglfw3-dev&&pip3 install wheel&&pip3 install -r scripts/requirements.txt
     - name: make
       run:  make -C 3_Implementation/

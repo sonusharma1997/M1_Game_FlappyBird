@@ -101,7 +101,6 @@ flappy: src/main.c src/test.c src/config.h libflappy.a $(resource_headers)
 	@pip3 install -r scripts/requirements.txt
 	@echo "MODEL   $@"
 	@python3 scripts/res2header.py $< $@
-	@sudo apt-get install libglfw3-dev
 	
 
 .SUFFIXES: .glsl .h

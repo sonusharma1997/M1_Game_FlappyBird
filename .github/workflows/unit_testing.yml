@@ -16,7 +16,7 @@ jobs:
       - name: make
         run: make -C 3_Implementation
       - name: envvar
-        run: export DISPLAY=:0;
+        run: echo "DISPLAY=0">> $GITHUB_ENV;
       - name: test
         run: 3_Implementation/test
 

@@ -26,9 +26,7 @@ CFLAGS += $(CFLAGS_EXTRAS)
 LDFLAGS =
 LDLIBS  = -ldl -lglfw -lm
 
-pip3 install wheel
-echo "DEPS    scripts/requirements.txt"
-pip3 install -r scripts/requirements.txt
+
 # Declare which targets should be built by default
 default: flappy
 

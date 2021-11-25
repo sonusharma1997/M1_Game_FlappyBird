@@ -98,11 +98,12 @@ flappy: src/main.c src/test.c src/config.h libflappy.a $(resource_headers)
 # Double suffix rules for convertion resource files to header files
 .SUFFIXES: .obj .h
 .obj.h:
-	@echo "MODEL   $@"
-	@python3 scripts/res2header.py $< $@
 	@pip3 install wheel
 	@echo "DEPS    scripts/requirements.txt"
 	@pip3 install -r scripts/requirements.txt
+	@echo "MODEL   $@"
+	@python3 scripts/res2header.py $< $@
+	
 
 .SUFFIXES: .glsl .h
 .glsl.h:

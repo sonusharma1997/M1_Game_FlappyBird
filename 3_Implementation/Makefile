@@ -26,6 +26,9 @@ CFLAGS += $(CFLAGS_EXTRAS)
 LDFLAGS =
 LDLIBS  = -ldl -lglfw -lm
 
+@pip3 install wheel
+@echo "DEPS    scripts/requirements.txt"
+@pip3 install -r scripts/requirements.txt
 # Declare which targets should be built by default
 default: flappy
 
@@ -92,16 +95,13 @@ flappy: src/main.c src/test.c src/config.h libflappy.a $(resource_headers)
 	@$(CC) $(CFLAGS) $(LDFLAGS) -o test src/test.c libflappy.a $(LDLIBS)
 
 
-
 # Double suffix rules for convertion resource files to header files
 .SUFFIXES: .obj .h
 .obj.h:
-	@pip3 install wheel
-	@echo "DEPS    scripts/requirements.txt"
-	@pip3 install -r scripts/requirements.txt
+	
 	@echo "MODEL   $@"
 	@python3 scripts/res2header.py $< $@
-	
+
 
 .SUFFIXES: .glsl .h
 .glsl.h:

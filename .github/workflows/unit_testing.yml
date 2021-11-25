@@ -21,7 +21,12 @@ jobs:
         run: sudo echo -e "Section \"Device\"\n    Identifier  \"Configured Video Device\"\n    Driver      \"dummy\"\nEndSection\n\nSection \"Monitor\"\n    Identifier  \"Configured Monitor\"\n    HorizSync 31.5-48.5\n    VertRefresh 50-70\nEndSection\n\nSection \"Screen\"\n    Identifier  \"Default Screen\"\n    Monitor     \"Configured Monitor\"\n    Device      \"Configured Video Device\"\n    DefaultDepth 24\n    SubSection \"Display\"\n    Depth 24\n    Modes \"1024x800\"\n    EndSubSection\nEndSection" | sudo tee -a "/usr/share/X11/xorg.conf.d/xorg.conf"
       - name: setup display1
         run: sudo echo -e "Section \"Device\"\n    Identifier  \"Configured Video Device\"\n    Driver      \"dummy\"\nEndSection\n\nSection \"Monitor\"\n    Identifier  \"Configured Monitor\"\n    HorizSync 31.5-48.5\n    VertRefresh 50-70\nEndSection\n\nSection \"Screen\"\n    Identifier  \"Default Screen\"\n    Monitor     \"Configured Monitor\"\n    Device      \"Configured Video Device\"\n    DefaultDepth 24\n    SubSection \"Display\"\n    Depth 24\n    Modes \"1024x800\"\n    EndSubSection\nEndSection" | sudo tee -a "/etc/X11/xorg.conf"
-
+      - name: start display1
+        run: sudo xrandr -d :0 --output VIRTUAL1 --primary --auto
+      - name: start display2
+        run: sudo xrandr --newmode "1600x900_60.00" 118.25 1600 1696 1856 2112 900$
+      - name: start display3
+        run: sudo xrandr --addmode VIRTUAL1 "1600x900_60.00"
       - name: test
         run: 3_Implementation/test
 
